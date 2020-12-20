@@ -1,0 +1,37 @@
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#app div.name {
+  display: flex;
+  justify-content: center;
+}
+
+#app div.name h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  padding: 3.2rem;
+}
+#app div.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#app div.input {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 30rem;
+}
+
+#app div.input span {
+  font-size: 0.8rem;
+}
+
+#app div.form button {
+  padding: 0.2rem 1rem;
+}
