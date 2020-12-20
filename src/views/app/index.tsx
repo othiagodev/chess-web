@@ -9,7 +9,11 @@ export default function App() {
   function handlePlay() {
     if (nickname.trim() && serverAddress) {
       const socket = io(serverAddress);
-      socket.on('connect', () => console.log('connect'));
+      socket.on('connect', () => {
+        console.log('connect');
+        socket.emit('connected');
+        socket.emit('message.name', {nickname});
+      })
     } else {
       console.log('server address not find');
     }
@@ -22,9 +26,9 @@ export default function App() {
       </div>
       <div className="form">
         <div className="input">
-          <span>Nickname</span>
+          <label htmlFor="nickname">Nickname</label>
           <input
-            className="nicknameInput"
+            id="nickname"
             type="text"
             value={nickname}
             placeholder="your nickname"
