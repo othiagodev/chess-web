@@ -35,3 +35,13 @@
 #app div.form button {
   padding: 0.2rem 1rem;
 }
+
+#app div.waitingOpponent {
+  display: flex;
+  justify-content: center;
+}
+
+#app div.board {
+  display: flex;
+  justify-content: center;
+}

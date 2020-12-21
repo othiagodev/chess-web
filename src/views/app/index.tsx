@@ -63,7 +63,9 @@ export default function App() {
       {(() => {
         if (waitingOpponent) {
           return (
-            <h1>Waiting Opponent</h1>
+            <div className="waitingOpponent">
+              <h1>Waiting Opponent</h1>
+            </div>
           )
         } else if (waitingOpponent !== null && !waitingOpponent) {
           return (
