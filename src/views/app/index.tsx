@@ -7,6 +7,11 @@ interface Game {
   match: Match | null
 }
 
+interface ChessMove {
+  sourcePosition: string
+  targetPosition: string
+}
+
 interface Match {
   player1: player
   player2: player
@@ -36,15 +41,21 @@ export default function App() {
   const [name, setName] = useState('');
   const [waitingOpponent, setWaitingOpponent] = useState<boolean | null>(null)
   const [match, setMatch] = useState<Match | null>(null)
+  const [socket, setSocket] = useState<SocketIOClient.Socket>()
+  //let socket: SocketIOClient.Socket
 
   function handlePlay() {
     if (name.trim() && serverAddress) {
-      const socket = io(serverAddress);
-      socket.on('connect', () => {
+      setSocket(io(serverAddress));
+
+      console.log(socket);
+      //why sockert is undefined?
+      
+      socket?.on('connect', () => {
         console.log('connect');
         socket.emit('begin.game', { name });
       })
-      socket.on('begin.game', (data: Game) => {
+      socket?.on('begin.game', (data: Game) => {
         console.log(data);
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
@@ -54,6 +65,10 @@ export default function App() {
     }
   }
 
+  function handleChessMove() {
+    console.log(socket)
+    socket?.emit('move.game', {sourcePosition: 'b5', targetPosition: 'b6'})
+  }
 
   return (
     <div id="app">
@@ -71,6 +86,7 @@ export default function App() {
           return (
             <div className="board">
               <h1>Game</h1>
+              <button onClick={handleChessMove}>Move</button>
             </div>
           )
         } else {
