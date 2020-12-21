@@ -24,15 +24,18 @@ interface player {
   playerColor: null
 }
 
+interface Board {
+  board: [[Piace]]
+}
+
 interface Piace {
 }
 
-interface Board {
-}
-
 export default function App() {
-  const [name, setName] = useState('');
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
+  const [name, setName] = useState('');
+  const [waitingOpponent, setWaitingOpponent] = useState<boolean | null>(null)
+  const [match, setMatch] = useState<Match | null>(null)
 
   function handlePlay() {
     if (name.trim() && serverAddress) {
@@ -43,31 +46,49 @@ export default function App() {
       })
       socket.on('begin.game', (data: Game) => {
         console.log(data);
-    
+        setWaitingOpponent(data.waitingOpponent);
+        setMatch(data.match);
       })
     } else {
       console.log('server address not find');
     }
   }
 
+
   return (
     <div id="app">
       <div className="name">
         <h1>Chess</h1>
       </div>
-      <div className="form">
-        <div className="input">
-          <label htmlFor="nickname">Nickname</label>
-          <input
-            id="nickname"
-            type="text"
-            value={name}
-            placeholder="your nickname"
-            onChange={event => setName(event.target.value)}
-          />
-        </div>
-        <button type="button" onClick={handlePlay}>PLAY</button>
-      </div>
+      {(() => {
+        if (waitingOpponent) {
+          return (
+            <h1>Waiting Opponent</h1>
+          )
+        } else if (waitingOpponent !== null && !waitingOpponent) {
+          return (
+            <div className="board">
+              <h1>Game</h1>
+            </div>
+          )
+        } else {
+          return (
+            <div className="form">
+              <div className="input">
+                <label htmlFor="nickname">Nickname</label>
+                <input
+                  id="nickname"
+                  type="text"
+                  value={name}
+                  placeholder="your nickname"
+                  onChange={event => setName(event.target.value)}
+                />
+              </div>
+              <button type="button" onClick={handlePlay}>PLAY</button>
+            </div>
+          )
+        }
+      })()}
     </div>
   );
 }
