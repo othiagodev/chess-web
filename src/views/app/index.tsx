@@ -2,17 +2,48 @@ import { useState } from 'react';
 import io from 'socket.io-client';
 import './style.css';
 
+interface Game {
+  waitingOpponent: boolean
+  match: Match | null
+}
+
+interface Match {
+  player1: player
+  player2: player
+  turn: number
+  currentPlayer: null
+  board: Board
+  check: boolean
+  checkMate: boolean
+  capturedPieces: Array<Piace>
+}
+
+interface player {
+  id: number,
+  name: string,
+  playerColor: null
+}
+
+interface Piace {
+}
+
+interface Board {
+}
+
 export default function App() {
-  const [nickname, setNickname] = useState('');
+  const [name, setName] = useState('');
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
   function handlePlay() {
-    if (nickname.trim() && serverAddress) {
+    if (name.trim() && serverAddress) {
       const socket = io(serverAddress);
       socket.on('connect', () => {
         console.log('connect');
-        socket.emit('connected');
-        socket.emit('message.name', {nickname});
+        socket.emit('begin.game', { name });
+      })
+      socket.on('begin.game', (data: Game) => {
+        console.log(data);
+    
       })
     } else {
       console.log('server address not find');
@@ -30,9 +61,9 @@ export default function App() {
           <input
             id="nickname"
             type="text"
-            value={nickname}
+            value={name}
             placeholder="your nickname"
-            onChange={event => setNickname(event.target.value)}
+            onChange={event => setName(event.target.value)}
           />
         </div>
         <button type="button" onClick={handlePlay}>PLAY</button>
