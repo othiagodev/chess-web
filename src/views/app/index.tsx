@@ -31,22 +31,26 @@ interface Board {
 interface Piace {
 }
 
-const socket = new Socket();
+const socket: Socket = new Socket();
 
 export default function App() {
   const [name, setName] = useState('');
   const [waitingOpponent, setWaitingOpponent] = useState<boolean | null>(null);
   const [match, setMatch] = useState<Match | null>(null);
 
+  
   function handlePlay() {
     if (name) {
       socket.getSocket().emit('begin.game', { name });
-
+      
       socket.getSocket().on('begin.game', (data: Game) => {
         console.log(data);
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
       })
+      socket.getSocket().on('invalid.move', () => console.log('invalid.move'))
+      socket.getSocket().on('next.turn', (data: Game) => console.log(data))
+      
     }
   }
 
