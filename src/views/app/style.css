@@ -45,3 +45,10 @@
   display: flex;
   justify-content: center;
 }
+
+#app div.board canvas#chessBoard {
+  height: 500px;
+  width: 500px;
+  background-color: gray;
+
+}
