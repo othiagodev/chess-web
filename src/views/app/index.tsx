@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Socket from '../../services/socket';
-import Board, { CanvasBoard } from '../../components/Board'
+import ChessBoard from '../../components/ChessBoard';
 import './style.css';
 
 interface Game {
@@ -18,7 +18,7 @@ export interface Match {
   player2: Player
   turn: number
   currentPlayer: string
-  board: Board
+  chessBoard: Board
   check: boolean
   checkMate: boolean
   capturedPieces: Array<Piace>
@@ -66,17 +66,14 @@ export default function App() {
     }
   }
 
-  function handleChessMove() {
+  function handleChessMove(sourcePosition: string, targetPosition: string) {
+    console.log(sourcePosition, targetPosition);
     if (match?.currentPlayer === 'WHITE') {
       socket.getSocket().emit('move.game', { sourcePosition: 'd2', targetPosition: 'd3' });
     } else {
       socket.getSocket().emit('move.game', { sourcePosition: 'e7', targetPosition: 'e6' });
     }
   }
-
-  useEffect(() => {
-    Board().render(match);
-  }, [match]);
 
   return (
     <div id="app">
@@ -94,10 +91,8 @@ export default function App() {
           return (
             <div className="board">
               <h1>Game</h1>
-              <button onClick={handleChessMove}>Move</button>
-              <canvas id="chessBoard">
-                <span>Your browser does not support HTML5, check the supported browser versions <a href="https://caniuse.com/?search=html%205">here</a>.</span>
-              </canvas>
+              <button >Move</button>
+              <ChessBoard socket={socket} match={match} />
             </div>
           )
         } else {

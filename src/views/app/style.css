@@ -46,9 +46,30 @@
   justify-content: center;
 }
 
-#app div.board canvas#chessBoard {
-  height: 500px;
-  width: 500px;
+#app div.board div#chessBoard {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  height: 32rem;
+  width: 32rem;
   background-color: gray;
+}
 
+#app div.board div#chessBoard div.cell {
+  height: 4rem;
+  width: 4rem;
+}
+
+#app div.board div#chessBoard div.blackCell {
+  background-color: #85aa53;
+}
+
+#app div.board div#chessBoard div.whiteCell {
+  background-color: #e8e7e6;
+}
+
+#app div.board div#chessBoard button.cellButton {
+  height: 4rem;
+  width: 4rem;
+  background-color: transparent;
 }
