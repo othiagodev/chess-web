@@ -85,8 +85,11 @@ export default function App() {
           )
         } else if (waitingOpponent !== null && !waitingOpponent && match) {
           return (
-            <div className="board">
-              <ChessBoard socket={socket} match={match} />
+            <div className="boarderContainer">
+              <label>{match.currentPlayer}</label>
+              <div className="board">
+                <ChessBoard socket={socket} match={match} />
+              </div>
             </div>
           )
         } else {

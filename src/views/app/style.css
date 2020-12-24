@@ -13,6 +13,7 @@
   font-weight: 700;
   padding: 3.2rem;
 }
+
 #app div.form {
   display: flex;
   justify-content: center;
@@ -30,10 +31,24 @@
 
 #app div.input label {
   font-size: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+#app div.input input {
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.6rem;
+  border: none;
 }
 
 #app div.form button {
-  padding: 0.2rem 1rem;
+  color: var(--text-color);
+  background-color: var(--bg-button);
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 0.6rem;
+  border-bottom: 0.2rem solid var(--bg-button-border);
+  padding: 0.8rem 4rem;
 }
 
 #app div.waitingOpponent {
@@ -47,13 +62,24 @@
   transform: rotate(-90deg);
 }
 
+#app div.boarderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app div.boarderContainer label {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 #app div.board div#chessBoard {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   height: 32rem;
   width: 32rem;
-  background-color: gray;
+  border-radius: 0.3rem;
 }
 
 #app div.board div#chessBoard.BLACK {
@@ -67,11 +93,11 @@
 }
 
 #app div.board div#chessBoard div.blackCell {
-  background-color: #85aa53;
+  background-color: var(--cellBlack);
 }
 
 #app div.board div#chessBoard div.whiteCell {
-  background-color: #e8e7e6;
+  background-color: var(--cellWhite);
 }
 
 #app div.board div#chessBoard button.cellButton {
