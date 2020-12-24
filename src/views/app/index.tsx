@@ -71,15 +71,6 @@ export default function App() {
     }
   }
 
-  function handleChessMove(sourcePosition: string, targetPosition: string) {
-    console.log(sourcePosition, targetPosition);
-    if (match?.currentPlayer === 'WHITE') {
-      socket.getSocket().emit('move.game', { sourcePosition: 'd2', targetPosition: 'd3' });
-    } else {
-      socket.getSocket().emit('move.game', { sourcePosition: 'e7', targetPosition: 'e6' });
-    }
-  }
-
   return (
     <div id="app">
       <div className="name">
