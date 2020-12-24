@@ -3,14 +3,19 @@ import Socket from '../../services/socket';
 import ChessBoard from '../../components/ChessBoard';
 import './style.css';
 
+enum color {
+  White = 'WHITE',
+  Black = 'BLACK'
+}
+
 interface Game {
   waitingOpponent: boolean
   match: Match
 }
 
 export interface Color {
-  BLACK: string
-  WHITE: string
+  BLACK: color.Black
+  WHITE: color.White
 }
 
 export interface Match {
@@ -25,9 +30,9 @@ export interface Match {
 }
 
 export interface Player {
-  id: number,
+  id: string,
   name: string,
-  playerColor: Color
+  playerColor: string
 }
 
 export interface Board {
@@ -36,7 +41,7 @@ export interface Board {
 
 export interface Piace {
   symbol: string
-  color: Color
+  color: string
   moveCount: number
   chessPosition: string
 }
@@ -87,11 +92,9 @@ export default function App() {
               <h1>Waiting Opponent</h1>
             </div>
           )
-        } else if (waitingOpponent !== null && !waitingOpponent) {
+        } else if (waitingOpponent !== null && !waitingOpponent && match) {
           return (
             <div className="board">
-              <h1>Game</h1>
-              <button >Move</button>
               <ChessBoard socket={socket} match={match} />
             </div>
           )
