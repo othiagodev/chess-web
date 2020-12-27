@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Socket from '../services/socket';
 import { Match } from '../views/app';
 import BishopWhite from '../assets/Pieces/bishop_white.svg';
@@ -28,6 +28,7 @@ export default function ChessBoard({ socket, match }: Props) {
 
   const [playerColor] = useState(whatMyColor(match));
   const [sourcePosition, setSourcePosition] = useState('');
+  const [cellSelected, setCellSelected] = useState<HTMLButtonElement | any>()
 
   function whatMyColor(match: Match) {
     if (match.player1.id === socket.getSocket().id)
@@ -84,15 +85,23 @@ export default function ChessBoard({ socket, match }: Props) {
     return options;
   }
 
-  function onSelectedPiece(i: number, j: number) {
+  function onSelectedPiece(event: React.MouseEvent<HTMLButtonElement, MouseEvent>, i: number, j: number) {
     const chessPosition = positionToChessPosition(i, j);
 
+    const cell: HTMLButtonElement | any = event.target
+    setCellSelected(cell);
+
     if (!sourcePosition) {
-      if (match.chessBoard.board[i][j] && match.chessBoard.board[i][j].color === playerColor)
+      if (match.chessBoard.board[i][j] && match.chessBoard.board[i][j].color === playerColor) {
+        cell.nextSibling.firstChild.style.backgroundColor = '#FFAA44';
         setSourcePosition(chessPosition);
+      }
     } else if (sourcePosition && sourcePosition === chessPosition) {
+      cell.nextSibling.firstChild.style.backgroundColor = '';
       setSourcePosition('');
     } else {
+      if (cellSelected.nextSibling)
+      cellSelected.nextSibling.firstChild.style.backgroundColor = '';
       socket.getSocket().emit('move.game', { sourcePosition: sourcePosition, targetPosition: chessPosition });
       setSourcePosition('');
     }
@@ -111,8 +120,8 @@ export default function ChessBoard({ socket, match }: Props) {
                 (() => (j % 2) ? 'blackCell' : 'whiteCell')();
               cells.push((
                 <div className={`cell ${cellColor}`} key={`${i}${j}`}>
-                  <button className="cellButton" onClick={() => onSelectedPiece(i, j)} />
-                  <div>
+                  <button className="cellButton" onClick={(event) => onSelectedPiece(event, i, j)} />
+                  <React.Fragment>
                     {(() => {
                       if (cell) {
                         const pieces = selectePiece(cell.symbol)
@@ -124,7 +133,7 @@ export default function ChessBoard({ socket, match }: Props) {
                         );
                       }
                     })()}
-                  </div>
+                  </React.Fragment>
                 </div>
               ));
             });
