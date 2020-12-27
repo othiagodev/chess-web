@@ -63,11 +63,21 @@ export default function App() {
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
       })
+
       socket.getSocket().on('invalid.move', () => console.log('invalid.move'))
+
       socket.getSocket().on('next.turn', (data: Game) => {
         console.log(data);
         setMatch(data.match);
       })
+
+      socket.getSocket().on('opponent.disconnect', () => {
+        console.log('opponent.disconnect');
+        setWaitingOpponent(null);
+        setMatch(null);
+        alert('Opponent disconnected');
+      });
+
     }
   }
 
