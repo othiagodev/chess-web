@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Socket from '../../services/socket';
 import ChessBoard from '../../components/ChessBoard';
 import './style.css';
@@ -52,7 +52,7 @@ export default function App() {
   const [name, setName] = useState('');
   const [waitingOpponent, setWaitingOpponent] = useState<boolean | null>(null);
   const [match, setMatch] = useState<Match | null>(null);
-
+  const [opponent, setOpponent] = useState<Player>()
 
   function handlePlay() {
     if (name) {
@@ -62,6 +62,11 @@ export default function App() {
         console.log(data);
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
+        if (data.match) {
+          console.log(data.match);
+          console.log(socket.getSocket().id);
+          setOpponent((data.match.player2.id === socket.getSocket().id) ? data.match.player1 : data.match.player2)
+        }
       })
 
       socket.getSocket().on('invalid.move', () => console.log('invalid.move'))
@@ -83,41 +88,50 @@ export default function App() {
 
   return (
     <div id="app">
-      <div className="name">
-        <h1>Chess</h1>
-      </div>
       {(() => {
         if (waitingOpponent) {
           return (
             <div className="waitingOpponent">
               <h1>Waiting Opponent</h1>
             </div>
-          )
+          );
         } else if (waitingOpponent !== null && !waitingOpponent && match) {
           return (
             <div className="boarderContainer">
-              <label>{match.currentPlayer}</label>
+              <div className="playerInfo">
+                <div className={`circler ${(opponent?.playerColor === match.currentPlayer) ? 'currentPlayer' : ''}`} />
+                <span className={'player'}>{opponent?.name}</span>
+              </div>
               <div className="board">
                 <ChessBoard socket={socket} match={match} />
               </div>
+              <div className="playerInfo">
+                <div className={`circler ${(opponent?.playerColor !== match.currentPlayer) ? 'currentPlayer' : ''}`} />
+                <span className="player">you</span>
+              </div>
             </div>
-          )
+          );
         } else {
           return (
-            <div className="form">
-              <div className="input">
-                <label htmlFor="nickname">Nickname</label>
-                <input
-                  id="nickname"
-                  type="text"
-                  value={name}
-                  placeholder="your nickname"
-                  onChange={event => setName(event.target.value)}
-                />
+            <React.Fragment>
+              <div className="name">
+                <h1>Chess</h1>
               </div>
-              <button type="button" onClick={handlePlay}>PLAY</button>
-            </div>
-          )
+              <div className="form">
+                <div className="input">
+                  <label htmlFor="nickname">Nickname</label>
+                  <input
+                    id="nickname"
+                    type="text"
+                    value={name}
+                    placeholder="your nickname"
+                    onChange={event => setName(event.target.value)}
+                  />
+                </div>
+                <button type="button" onClick={handlePlay}>PLAY</button>
+              </div>
+            </React.Fragment>
+          );
         }
       })()}
     </div>

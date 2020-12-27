@@ -52,8 +52,10 @@
 }
 
 #app div.waitingOpponent {
+  height: 70vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #app div.board {
@@ -63,22 +65,44 @@
 }
 
 #app div.boarderContainer {
+  height: 100vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
-#app div.boarderContainer label {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+#app div.boarderContainer div.playerInfo {
+  height: 3rem;
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+
+#app div.boarderContainer div.circler {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.5rem;
+  background-color: crimson;
+}
+
+#app div.boarderContainer div.circler.currentPlayer {
+  background-color: greenyellow;
+}
+
+#app div.boarderContainer span.player {
+  padding-left: 1rem;
+  font-size: 1.3rem;
 }
 
 #app div.board div#chessBoard {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  height: 32rem;
-  width: 32rem;
+  height: 40rem;
+  width: 40rem;
   border-radius: 0.3rem;
 }
 
@@ -88,8 +112,8 @@
 }
 
 #app div.board div#chessBoard div.cell {
-  height: 4rem;
-  width: 4rem;
+  height: 5rem;
+  width: 5rem;
 }
 
 #app div.board div#chessBoard div.blackCell {
@@ -103,8 +127,8 @@
 #app div.board div#chessBoard button.cellButton {
   position: absolute;
   border: none;
-  height: 4rem;
-  width: 4rem;
+  height: 5rem;
+  width: 5rem;
   background-color: transparent;
   z-index: 10;
 }
@@ -114,7 +138,7 @@
 }
 
 #app div.board div#chessBoard img.pieceImg {
-  height: 4rem;
+  height: 5rem;
   transform: rotate(90deg);
 }
 
