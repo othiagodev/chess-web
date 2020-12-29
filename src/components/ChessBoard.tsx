@@ -123,8 +123,8 @@ export default function ChessBoard({ socket, match }: Props) {
                   <button className="cellButton" onClick={(event) => onSelectedPiece(event, i, j)} />
                   {(() => {
                     const borderCoordinateColor = (i % 2) ?
-                    (() => (j % 2) ? 'bcWhite' : 'bcBlack')() :
-                    (() => (j % 2) ? 'bcBlack' : 'bcWhite')();
+                      (() => (j % 2) ? 'bcWhite' : 'bcBlack')() :
+                      (() => (j % 2) ? 'bcBlack' : 'bcWhite')();
                     if (playerColor === Color.White) {
                       if (i === 0 && j === 0) {
                         return (

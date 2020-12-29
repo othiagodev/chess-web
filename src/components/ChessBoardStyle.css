@@ -8,7 +8,7 @@
 
 #app div.boarderContainer div.playerInfo {
   height: 3rem;
-  width: 40rem;
+  width: 48rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -35,8 +35,8 @@
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  height: 40rem;
-  width: 40rem;
+  height: 48rem;
+  width: 48rem;
   border-radius: 0.3rem;
 }
 
@@ -46,8 +46,8 @@
 }
 
 #app div.board div#chessBoard div.cell {
-  height: 5rem;
-  width: 5rem;
+  height: 6rem;
+  width: 6rem;
   position: relative;
 }
 
@@ -62,8 +62,8 @@
 #app div.board div#chessBoard button.cellButton {
   position: absolute;
   border: none;
-  height: 5rem;
-  width: 5rem;
+  height: 6rem;
+  width: 6rem;
   background-color: transparent;
   z-index: 10;
 }
@@ -78,11 +78,11 @@
 }
 
 #app div.board div#chessBoard div.borderCoordinate.number{
-  right: 10px;
+  right: 0.625rem;
 }
 
 #app div.board div#chessBoard div.borderCoordinate.letter{
-  left: 5px;
+  left: 0.3125rem;
   bottom: 0;
 }
 
@@ -107,7 +107,7 @@
 }
 
 #app div.board div#chessBoard img.pieceImg {
-  height: 5rem;
+  height: 6rem;
   transform: rotate(90deg);
 }
 
