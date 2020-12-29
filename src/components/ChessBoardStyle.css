@@ -1,0 +1,117 @@
+#app div.boarderContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app div.boarderContainer div.playerInfo {
+  height: 3rem;
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+
+#app div.boarderContainer div.circler {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.5rem;
+  background-color: crimson;
+}
+
+#app div.boarderContainer div.circler.currentPlayer {
+  background-color: greenyellow;
+}
+
+#app div.boarderContainer span.player {
+  padding-left: 1rem;
+  font-size: 1.3rem;
+}
+
+#app div.board div#chessBoard {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  height: 40rem;
+  width: 40rem;
+  border-radius: 0.3rem;
+}
+
+#app div.board div#chessBoard.BLACK {
+  flex-direction: row-reverse;
+  transform: scaleY(-1);
+}
+
+#app div.board div#chessBoard div.cell {
+  height: 5rem;
+  width: 5rem;
+  position: relative;
+}
+
+#app div.board div#chessBoard div.blackCell {
+  background-color: var(--cellBlack);
+}
+
+#app div.board div#chessBoard div.whiteCell {
+  background-color: var(--cellWhite);
+}
+
+#app div.board div#chessBoard button.cellButton {
+  position: absolute;
+  border: none;
+  height: 5rem;
+  width: 5rem;
+  background-color: transparent;
+  z-index: 10;
+}
+
+#app div.board div#chessBoard button.cellButton:focus{
+  outline-style: none;
+}
+
+#app div.board div#chessBoard div.borderCoordinate {
+  transform: rotate(90deg);
+  position: absolute;
+}
+
+#app div.board div#chessBoard div.borderCoordinate.number{
+  right: 10px;
+}
+
+#app div.board div#chessBoard div.borderCoordinate.letter{
+  left: 5px;
+  bottom: 0;
+}
+
+#app div.board div#chessBoard div.borderCoordinate.bcBlack{
+  color: var(--cellBlack);
+}
+
+#app div.board div#chessBoard div.borderCoordinate.bcWhite{
+  color: var(--cellWhite);
+}
+
+#app div.board div#chessBoard.BLACK div.borderCoordinate.number {
+  bottom: 0;
+}
+
+#app div.board div#chessBoard.BLACK div.borderCoordinate div{
+  transform: scaleX(-1);
+}
+
+#app div.board div#chessBoard.BLACK div.borderCoordinate.letter {
+  bottom: unset;
+}
+
+#app div.board div#chessBoard img.pieceImg {
+  height: 5rem;
+  transform: rotate(90deg);
+}
+
+#app div.board div#chessBoard.BLACK .pieceContainer {
+  transform: scaleY(-1);
+  display: flex;
+}

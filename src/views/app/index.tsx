@@ -63,8 +63,6 @@ export default function App() {
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
         if (data.match) {
-          console.log(data.match);
-          console.log(socket.getSocket().id);
           setOpponent((data.match.player2.id === socket.getSocket().id) ? data.match.player1 : data.match.player2)
         }
       })
