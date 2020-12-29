@@ -115,3 +115,193 @@
   transform: scaleY(-1);
   display: flex;
 }
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  #app div.boarderContainer div.playerInfo {
+    width: 90vw;
+  }
+
+  #app div.board div#chessBoard {
+    height: 90vw;
+    width: 90vw;
+  }
+
+  #app div.board div#chessBoard div.cell {
+    height: calc(90vw / 8);
+    width: calc(90vw / 8);
+  }
+
+  #app div.board div#chessBoard button.cellButton {
+    height: calc(90vw / 8);
+    width: calc(90vw / 8);
+  }
+
+  #app div.board div#chessBoard img.pieceImg {
+    height: calc(90vw / 8);
+  }
+
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 1.1rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  #app div.boarderContainer div.playerInfo {
+    width: 100vw;
+  }
+
+  #app div.board div#chessBoard {
+    height: 100vw;
+    width: 100vw;
+  }
+
+  #app div.board div#chessBoard div.cell {
+    height: calc(100vw / 8);
+    width: calc(100vw / 8);
+  }
+
+  #app div.board div#chessBoard button.cellButton {
+    height: calc(100vw / 8);
+    width: calc(100vw / 8);
+  }
+
+  #app div.board div#chessBoard img.pieceImg {
+    height: calc(100vw / 8);
+  }
+
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.8rem;
+  }
+
+}
+
+@media (max-width: 540px) and (orientation: portrait){
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.6rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1.2rem;
+  }
+
+  #app div.boarderContainer div.circler {
+    height: 0.7rem;
+    width: 0.7rem;
+    border-radius: 0.35rem;
+  }
+}
+
+@media (max-width: 360px) and (orientation: portrait){
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.5rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-height: 1024px) and (orientation: landscape) {
+  #app div.boarderContainer div.playerInfo {
+    width: 90vh;
+  }
+
+  #app div.board div#chessBoard {
+    height: 90vh;
+    width: 90vh;
+  }
+
+  #app div.board div#chessBoard div.cell {
+    height: calc(90vh / 8);
+    width: calc(90vh / 8);
+  }
+
+  #app div.board div#chessBoard button.cellButton {
+    height: calc(90vh / 8);
+    width: calc(90vh / 8);
+  }
+
+  #app div.board div#chessBoard img.pieceImg {
+    height: calc(90vh / 8);
+  }
+
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 1.1rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-height: 768px) and (orientation: landscape) {
+  #app div.boarderContainer div.playerInfo {
+    width: 85vh;
+  }
+
+  #app div.board div#chessBoard {
+    height: 85vh;
+    width: 85vh;
+  }
+
+  #app div.board div#chessBoard div.cell {
+    height: calc(85vh / 8);
+    width: calc(85vh / 8);
+  }
+
+  #app div.board div#chessBoard button.cellButton {
+    height: calc(85vh / 8);
+    width: calc(85vh / 8);
+  }
+
+  #app div.board div#chessBoard img.pieceImg {
+    height: calc(85vh / 8);
+  }
+
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.8rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (max-height: 540px) and (orientation: landscape){
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 1rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1.2rem;
+  }
+
+  #app div.boarderContainer div.circler {
+    height: 0.7rem;
+    width: 0.7rem;
+    border-radius: 0.35rem;
+  }
+
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.6rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-height: 360px) and (orientation: landscape){
+  #app div.board div#chessBoard div.borderCoordinate {
+    font-size: 0.5rem;
+  }
+
+  #app div.boarderContainer div.playerInfo span {
+    font-size: 0.7rem;
+  }
+}
