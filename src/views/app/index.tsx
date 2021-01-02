@@ -58,8 +58,14 @@ export default function App() {
     if (name) {
       socket.getSocket().emit('begin.game', { name });
 
+      socket.getSocket().on('opponent.disconnect', () => {
+        console.log('opponent.disconnect');
+        setWaitingOpponent(null);
+        setMatch(null);
+        alert('Opponent disconnected');
+      });
+
       socket.getSocket().on('begin.game', (data: Game) => {
-        console.log(data);
         setWaitingOpponent(data.waitingOpponent);
         setMatch(data.match);
         if (data.match) {
@@ -70,15 +76,18 @@ export default function App() {
       socket.getSocket().on('invalid.move', () => console.log('invalid.move'))
 
       socket.getSocket().on('next.turn', (data: Game) => {
-        console.log(data);
         setMatch(data.match);
       })
 
-      socket.getSocket().on('opponent.disconnect', () => {
-        console.log('opponent.disconnect');
-        setWaitingOpponent(null);
-        setMatch(null);
-        alert('Opponent disconnected');
+      socket.getSocket().on('promotion', (data: Game) => {
+        data.match?.chessBoard.board.forEach((line, i) => {
+          line.forEach((cell, j) => {
+            if (cell && cell.color === data.match.currentPlayer && cell.symbol === 'P' && (j === 0 || j === 7)) {
+              socket.getSocket().emit('promotion', { symbol: 'Q' });
+            }
+          });
+        });
+
       });
 
     }
