@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Socket from '../../services/socket';
-import ChessBoard from '../../components/ChessBoard';
+import ChessBoard from '../../components/ChessBoard/index';
 import './style.css';
 
 enum color {

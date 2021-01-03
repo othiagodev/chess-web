@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import Socket from '../services/socket';
-import { Match } from '../views/app';
-import BishopWhite from '../assets/Pieces/bishop_white.svg';
-import BishopBlack from '../assets/Pieces/bishop_black.svg';
-import KingWhite from '../assets/Pieces/king_white.svg';
-import KingBlack from '../assets/Pieces/king_black.svg';
-import KnightWhite from '../assets/Pieces/knight_white.svg';
-import KnightBlack from '../assets/Pieces/knight_black.svg';
-import PawnWhite from '../assets/Pieces/pawn_white.svg';
-import PawnBlack from '../assets/Pieces/pawn_black.svg';
-import QueenWhite from '../assets/Pieces/queen_white.svg';
-import QueenBlack from '../assets/Pieces/queen_black.svg';
-import RookWhite from '../assets/Pieces/rook_white.svg';
-import RookBlack from '../assets/Pieces/rook_black.svg';
-import './ChessBoardStyle.css';
+import Socket from '../../services/socket';
+import { Match } from '../../views/app';
+import BishopWhite from '../../assets/Pieces/bishop_white.svg';
+import BishopBlack from '../../assets/Pieces/bishop_black.svg';
+import KingWhite from '../../assets/Pieces/king_white.svg';
+import KingBlack from '../../assets/Pieces/king_black.svg';
+import KnightWhite from '../../assets/Pieces/knight_white.svg';
+import KnightBlack from '../../assets/Pieces/knight_black.svg';
+import PawnWhite from '../../assets/Pieces/pawn_white.svg';
+import PawnBlack from '../../assets/Pieces/pawn_black.svg';
+import QueenWhite from '../../assets/Pieces/queen_white.svg';
+import QueenBlack from '../../assets/Pieces/queen_black.svg';
+import RookWhite from '../../assets/Pieces/rook_white.svg';
+import RookBlack from '../../assets/Pieces/rook_black.svg';
+import './style.css';
 
 interface Props {
   socket: Socket
