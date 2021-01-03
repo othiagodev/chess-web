@@ -1,0 +1,107 @@
+div#popup {
+  position: absolute;
+  box-shadow: -0.3rem 0rem 0.6rem 0.5rem #00000030;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+#popup div.cell {
+  height: 7.5rem;
+  width: 7.5rem;
+  position: relative;
+}
+
+#popup div.blackCell {
+  background-color: var(--cellBlack);
+}
+
+#popup div.whiteCell {
+  background-color: var(--cellWhite);
+}
+
+#popup button.cellButton {
+  position: absolute;
+  border: none;
+  height: 7.5rem;
+  width: 7.5rem;
+  background-color: transparent;
+  z-index: 10;
+}
+
+#popup button.cellButton:focus{
+  outline-style: none;
+}
+
+#popup img.pieceImg {
+  height: 7.5rem;
+  transform: rotate(90deg);
+}
+
+#popup .pieceContainer {
+  transform: scaleY(-1);
+  display: flex;
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  #popup div.cell {
+    height: calc(90vw / 8 * 1.25);
+    width: calc(90vw / 8 * 1.25);
+  }
+
+  #popup button.cellButton {
+    height: calc(90vw / 8 * 1.25);
+    width: calc(90vw / 8 * 1.25);
+  }
+
+  #popup img.pieceImg {
+    height: calc(90vw / 8 * 1.25);
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  #popup div.cell {
+    height: calc(100vw / 8 * 1.25);
+    width: calc(100vw / 8 * 1.25);
+  }
+
+  #popup button.cellButton {
+    height: calc(100vw / 8 * 1.25);
+    width: calc(100vw / 8 * 1.25);
+  }
+
+  #popup img.pieceImg {
+    height: calc(100vw / 8 * 1.25);
+  }
+}
+
+@media (max-height: 1024px) and (orientation: landscape) {
+  #popup div.cell {
+    height: calc(90vh / 8 * 1.25);
+    width: calc(90vh / 8 * 1.25);
+  }
+
+  #popup button.cellButton {
+    height: calc(90vh / 8 * 1.25);
+    width: calc(90vh / 8 * 1.25);
+  }
+
+  #popup img.pieceImg {
+    height: calc(90vh / 8 * 1.25);
+  }
+}
+
+@media (max-height: 768px) and (orientation: landscape) {
+  #popup div.cell {
+    height: calc(85vh / 8 * 1.25);
+    width: calc(85vh / 8 * 1.25);
+  }
+
+  #popup button.cellButton {
+    height: calc(85vh / 8 * 1.25);
+    width: calc(85vh / 8 * 1.25);
+  }
+
+  #popup img.pieceImg {
+    height: calc(85vh / 8 * 1.25);
+  }
+}

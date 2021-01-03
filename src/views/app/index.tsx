@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Socket from '../../services/socket';
 import ChessBoard from '../../components/ChessBoard/index';
+import Popup from '../../components/Popup/index'
 import './style.css';
 
 enum color {
@@ -52,10 +53,13 @@ export default function App() {
   const [name, setName] = useState('');
   const [waitingOpponent, setWaitingOpponent] = useState<boolean | null>(null);
   const [match, setMatch] = useState<Match | null>(null);
-  const [opponent, setOpponent] = useState<Player>()
+  const [opponent, setOpponent] = useState<Player>();
+  const [promotionPopup, showPromotionPopup] = useState(false);
 
   function handlePlay() {
     if (name) {
+      showPromotionPopup(false);
+
       socket.getSocket().emit('begin.game', { name });
 
       socket.getSocket().on('opponent.disconnect', () => {
@@ -71,25 +75,33 @@ export default function App() {
         if (data.match) {
           setOpponent((data.match.player2.id === socket.getSocket().id) ? data.match.player1 : data.match.player2)
         }
-      })
+      });
 
-      socket.getSocket().on('invalid.move', () => console.log('invalid.move'))
+      socket.getSocket().on('invalid.move', () => console.log('invalid.move'));
 
       socket.getSocket().on('next.turn', (data: Game) => {
         setMatch(data.match);
-      })
+      });
 
       socket.getSocket().on('promotion', (data: Game) => {
         data.match?.chessBoard.board.forEach((line, i) => {
           line.forEach((cell, j) => {
             if (cell && cell.color === data.match.currentPlayer && cell.symbol === 'P' && (j === 0 || j === 7)) {
-              socket.getSocket().emit('promotion', { symbol: 'Q' });
+              showPromotionPopup(true);
             }
           });
         });
-
       });
 
+    }
+  }
+
+  function handlePopup() {
+    if (promotionPopup) {
+      if (match) {
+        const playerColor = (match.player1.id === socket.getSocket().id) ? match.player1.playerColor : match.player2.playerColor;
+        return <Popup socket={socket} playerColor={playerColor} showPopup={showPromotionPopup} />
+      }
     }
   }
 
@@ -111,6 +123,7 @@ export default function App() {
               </div>
               <div className="board">
                 <ChessBoard socket={socket} match={match} />
+                {handlePopup()}
               </div>
               <div className="playerInfo">
                 <div className={`circler ${(opponent?.playerColor !== match.currentPlayer) ? 'currentPlayer' : ''}`} />

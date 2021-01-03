@@ -61,6 +61,7 @@
 
 #app div.board {
   display: flex;
+  align-items: center;
   justify-content: center;
   transform: rotate(-90deg);
 }
