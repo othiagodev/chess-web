@@ -60,7 +60,7 @@ export default function ChessBoard({ socket, match }: Props) {
     return `${position.i}${position.j}`;
   }
 
-  function selectePiece(symbol: string) {
+  function selectPiece(symbol: string) {
     let options = { white: '', black: '' }
     switch (symbol) {
       case 'K':
@@ -92,7 +92,7 @@ export default function ChessBoard({ socket, match }: Props) {
     setCellSelected(cell);
 
     if (!sourcePosition) {
-      if (match.chessBoard.board[i][j] && match.chessBoard.board[i][j].color === playerColor) {
+      if (match.board[i][j] && match.board[i][j].color === playerColor) {
         cell.parentElement.lastChild.firstChild.style.backgroundColor = '#FFAA44';
         setSourcePosition(chessPosition);
       }
@@ -110,7 +110,7 @@ export default function ChessBoard({ socket, match }: Props) {
   return (
     <div id="chessBoard" className={playerColor}>
       {(() => {
-        const board = match.chessBoard.board;
+        const board = match.board;
         if (board) {
           const cells: JSX.Element[] = [];
           board.forEach((line, i) => {
@@ -184,7 +184,7 @@ export default function ChessBoard({ socket, match }: Props) {
                   <React.Fragment>
                     {(() => {
                       if (cell) {
-                        const pieces = selectePiece(cell.symbol)
+                        const pieces = selectPiece(cell.symbol)
                         const piece = (cell.color === Color.White) ? pieces.white : pieces.black;
                         return (
                           <div className="pieceContainer">

@@ -24,10 +24,10 @@ export interface Match {
   player2: Player
   turn: number
   currentPlayer: string
-  chessBoard: Board
+  board: [[Piece]]
   check: boolean
   checkMate: boolean
-  capturedPieces: Array<Piace>
+  capturedPieces: Array<Piece>
 }
 
 export interface Player {
@@ -36,11 +36,7 @@ export interface Player {
   playerColor: string
 }
 
-export interface Board {
-  board: [[Piace]]
-}
-
-export interface Piace {
+export interface Piece {
   symbol: string
   color: string
   moveCount: number
@@ -84,7 +80,7 @@ export default function App() {
       });
 
       socket.getSocket().on('promotion', (data: Game) => {
-        data.match?.chessBoard.board.forEach((line, i) => {
+        data.match?.board.forEach((line, i) => {
           line.forEach((cell, j) => {
             if (cell && cell.color === data.match.currentPlayer && cell.symbol === 'P' && (j === 0 || j === 7)) {
               showPromotionPopup(true);
